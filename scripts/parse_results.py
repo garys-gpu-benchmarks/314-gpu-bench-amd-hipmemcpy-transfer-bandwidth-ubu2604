@@ -27,7 +27,8 @@ from pathlib import Path
 ANSI_RE = re.compile(r"\x1b\[[0-9;]*[A-Za-z]|\x00")
 _COL_ALIASES = {
     "rocm-package-mismatch-count": "rocm_package_mismatch_count",
-    "kernel-driver-mismatch-count": "kernel_driver_mismatch_count",
+    "kernel-driver-mismatch-count": "kernel_release_mismatch_count",
+    "kernel-release-mismatch-count": "kernel_release_mismatch_count",
     "firmware-compliance-percent": "firmware_compliance_percent",
     "driver-compliance-percent": "driver_compliance_percent",
     "permission-error-count": "permission_error_count",
@@ -232,6 +233,50 @@ def build_metrics_summary(metric_cols, rows, aggregates):
                     # silently overwriting an unrelated metric.
                     key = f"{col}_{slug}"
                 summary_metrics[key] = mean_val
+    if not rows or "transfer_size_bytes" not in rows[0]:
+        return summary_metrics
+    directions = {str(row.get("direction", "")).strip().lower() for row in rows}
+    if not (directions & {"h2d", "d2h", "d2d"}):
+        return summary_metrics
+    sized = []
+    for row in rows:
+        size = to_number(row.get("transfer_size_bytes", ""))
+        if isinstance(size, (int, float)):
+            sized.append((float(size), str(row.get("direction", "")).strip().lower(), row))
+    if not sized:
+        return summary_metrics
+    max_size = max(item[0] for item in sized)
+    min_size = min(item[0] for item in sized)
+    bw_key = next((key for key in ("bandwidth_gbps",) if any(key in row for row in rows)), "")
+    lat_key = "latency_us" if any("latency_us" in row for row in rows) else ""
+
+    def pick(size, direction, key):
+        if not key:
+            return None
+        for item_size, item_dir, row in sized:
+            if item_size == size and item_dir == direction:
+                number = to_number(row.get(key, ""))
+                if isinstance(number, (int, float)):
+                    return number
+        return None
+
+    h2d_bw = pick(max_size, "h2d", bw_key)
+    h2d_lat = pick(min_size, "h2d", lat_key)
+    if h2d_bw is not None and bw_key:
+        summary_metrics[bw_key] = h2d_bw
+    if h2d_lat is not None and lat_key:
+        summary_metrics[lat_key] = h2d_lat
+    summary_metrics["headline_transfer_bytes"] = int(max_size)
+    mib = max_size / (1024.0 * 1024.0)
+    mib_text = str(int(mib)) if float(mib).is_integer() else f"{mib:.3g}"
+    summary_metrics["headline_point"] = f"at {mib_text} MiB H2D"
+    for direction in ("h2d", "d2h", "d2d"):
+        bandwidth = pick(max_size, direction, bw_key)
+        latency = pick(min_size, direction, lat_key)
+        if bandwidth is not None and bw_key:
+            summary_metrics[f"{bw_key}_{direction}"] = bandwidth
+        if latency is not None and lat_key:
+            summary_metrics[f"{lat_key}_{direction}"] = latency
     return summary_metrics
 
 

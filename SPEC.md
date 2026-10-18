@@ -32,9 +32,9 @@ sample_index,status,direction,pinned_memory,transfer_size_bytes,latency_us,bandw
 
 ## Metrics
 
-- **#1: Transfer direction** — stored as `direction`.
-- **#2: Copy latency, us** — stored as `latency_us`.
-- **#3: Copy bandwidth, GB/s** — stored as `bandwidth_GBps`.
+- **#1: Copy bandwidth at max size, H2D, GB/s** — stored as `bandwidth_GBps`.
+- **#2: Copy latency at min size, H2D, us** — stored as `latency_us`.
+- **#3: Bandwidth headline size, bytes** — stored as `headline_transfer_bytes`.
 
 ## Framework
 
