@@ -102,7 +102,7 @@
   {
     "field_name": "run_benchmark Command Plus Options for Smoke Run",
     "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
-    "value": "bash run_benchmark.sh --smoke --validate --device-id 0 --direction all --pinned-memory true --min-bytes 1024 --max-bytes 4096 --step-factor 2 --warmup-iters 1 --num-iterations 3"
+    "value": "bash run_benchmark.sh --smoke --validate --device-id 0 --direction all --pinned-memory true --min-bytes 1024 --max-bytes 268435456 --step-factor 2 --warmup-iters 1 --num-iterations 10"
   },
   {
     "field_name": "run_benchmark Command Plus Options for Baseline Run",
@@ -407,7 +407,7 @@
   {
     "field_name": "Profile Parameter Values",
     "source_file": "BenchmarkSpecDefinitions.xlsx::Parameters_SmokeBaselineExtend",
-    "value": "{\"device_id\": {\"smoke\": \"0\", \"baseline\": \"0\", \"extended\": \"0\", \"notes\": \"\"}, \"direction\": {\"smoke\": \"all\", \"baseline\": \"all\", \"extended\": \"all\", \"notes\": \"\"}, \"pinned_memory\": {\"smoke\": \"true\", \"baseline\": \"true\", \"extended\": \"true\", \"notes\": \"\"}, \"min_bytes\": {\"smoke\": \"1024\", \"baseline\": \"1024\", \"extended\": \"1024\", \"notes\": \"\"}, \"max_bytes\": {\"smoke\": \"4096\", \"baseline\": \"1073741824\", \"extended\": \"1073741824\", \"notes\": \"VM 2026-08-16 max_bytes=1GiB num_iterations=2600 -> 206s (3:26). Extended 7500 iters ~10:00, not tested.\"}, \"step_factor\": {\"smoke\": \"2\", \"baseline\": \"2\", \"extended\": \"2\", \"notes\": \"\"}, \"warmup_iters\": {\"smoke\": \"1\", \"baseline\": \"5\", \"extended\": \"10\", \"notes\": \"\"}, \"num_iterations\": {\"smoke\": \"3\", \"baseline\": \"2100\", \"extended\": \"6080\", \"notes\": \"VM 2026-08-16 max_bytes=1GiB num_iterations=2600 -> 206s (3:26). Extended 7500 iters ~10:00, not tested. Retimed 2026-08-17 toward 3-4 min baseline; extended scaled by the same factor.\"}}"
+    "value": "{\"device_id\": {\"smoke\": \"0\", \"baseline\": \"0\", \"extended\": \"0\", \"notes\": \"\"}, \"direction\": {\"smoke\": \"all\", \"baseline\": \"all\", \"extended\": \"all\", \"notes\": \"\"}, \"pinned_memory\": {\"smoke\": \"true\", \"baseline\": \"true\", \"extended\": \"true\", \"notes\": \"\"}, \"min_bytes\": {\"smoke\": \"1024\", \"baseline\": \"1024\", \"extended\": \"1024\", \"notes\": \"\"}, \"max_bytes\": {\"smoke\": \"268435456\", \"baseline\": \"1073741824\", \"extended\": \"1073741824\", \"notes\": \"VM 2026-08-16 max_bytes=1GiB num_iterations=2600 -> 206s (3:26). Extended 7500 iters ~10:00, not tested. | 2026-10-22 (00_117): smoke max_bytes 4096 -> 268435456. The collector already raised max_bytes below 256 MiB (BANDWIDTH_SIZE_FLOOR) to 256 MiB, so smoke bandwidth was measured at 256 MiB while this sheet said 4 KiB; the sheet now states the size that runs.\"}, \"step_factor\": {\"smoke\": \"2\", \"baseline\": \"2\", \"extended\": \"2\", \"notes\": \"\"}, \"warmup_iters\": {\"smoke\": \"1\", \"baseline\": \"5\", \"extended\": \"10\", \"notes\": \"\"}, \"num_iterations\": {\"smoke\": \"10\", \"baseline\": \"2100\", \"extended\": \"6080\", \"notes\": \"VM 2026-08-16 max_bytes=1GiB num_iterations=2600 -> 206s (3:26). Extended 7500 iters ~10:00, not tested. Retimed 2026-08-17 toward 3-4 min baseline; extended scaled by the same factor. | 2026-10-22 (00_117): smoke num_iterations 3 -> 10, the collector minimum (BANDWIDTH_ITERATION_FLOOR) that smoke already ran.\"}}"
   },
   {
     "field_name": "Profile Command Authorship",

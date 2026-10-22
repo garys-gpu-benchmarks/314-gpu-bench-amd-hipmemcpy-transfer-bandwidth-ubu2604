@@ -12,10 +12,10 @@ Builds and runs bin/hip_memcpy_bw over yaml transfer sizes and directions. direc
 | direction | `--direction` | smoke=all, baseline=all, extended=all | all | From Parameter list; see Execution Description With Parameters. |
 | pinned_memory | `--pinned-memory` | smoke=true, baseline=true, extended=true | true | From Parameter list; see Execution Description With Parameters. |
 | min_bytes | `--min-bytes` | smoke=1024, baseline=1024, extended=1024 | 1024 | From Parameter list; see Execution Description With Parameters. |
-| max_bytes | `--max-bytes` | smoke=4096, baseline=1073741824, extended=1073741824 | 1073741824 | From Parameter list; see Execution Description With Parameters. |
+| max_bytes | `--max-bytes` | smoke=268435456, baseline=1073741824, extended=1073741824 | 1073741824 | From Parameter list; see Execution Description With Parameters. |
 | step_factor | `--step-factor` | smoke=2, baseline=2, extended=2 | 2 | From Parameter list; see Execution Description With Parameters. |
 | warmup_iters | `--warmup-iters` | smoke=1, baseline=5, extended=10 | 5 | From Parameter list; see Execution Description With Parameters. |
-| num_iterations | `--num-iterations` | smoke=3, baseline=2100, extended=6080 | 2100 | From Parameter list; see Execution Description With Parameters. |
+| num_iterations | `--num-iterations` | smoke=10, baseline=2100, extended=6080 | 2100 | From Parameter list; see Execution Description With Parameters. |
 
 ## Invocation
 

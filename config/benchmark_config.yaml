@@ -13,7 +13,7 @@ sweep:
   pinned_memory: true
   min_bytes: 1024
   max_bytes:
-    smoke: 4096
+    smoke: 268435456
     baseline: 1073741824
     extended: 1073741824
   step_factor: 2
@@ -22,6 +22,6 @@ sweep:
     baseline: 5
     extended: 10
   num_iterations:
-    smoke: 3
+    smoke: 10
     baseline: 2100
     extended: 6080
