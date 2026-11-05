@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # File: run_benchmark.sh
 # Description: Builds and runs bin/hip_memcpy_bw over yaml transfer sizes and directions.
-# Execution: bash run_benchmark.sh [--smoke|--baseline|--extended] [--validate]
-# Options: --smoke, --baseline, --extended, --config, --validate, --help
+# Execution: bash run_benchmark.sh [--smoke|--baseline|--extended]
+# Options: --smoke, --baseline, --extended, --config, --help
 # Requirements: bash, python3, repository-local .venv
 # Dependencies: common.sh, collect_workload.py
 # License: Apache-2.0
@@ -20,21 +20,12 @@ Usage: bash run_benchmark.sh [OPTIONS]
 
 Builds and runs bin/hip_memcpy_bw over yaml transfer sizes and directions.
 
-Profiles:
+Profiles (default: --smoke):
   --smoke                       Run smoke profile
   --baseline                    Run baseline profile
   --extended                    Run extended profile
 
-Execution:
-  --config <file>               Config file (default: config/benchmark_config.yaml)
-
-Validation and logging:
-  --validate                    Enable result validation (default)
-  --no-validate                 Skip result validation
-  --quiet                       Suppress nonessential stdout
-  --log-level <level>           ERROR|WARN|INFO|DEBUG (default: INFO)
-
-Workload options:
+Parameters (override the profile's value):
   --device-id <value>           Target accelerator or device identifier (smoke/baseline/extended: 0)
   --direction <value>           Shared workload parameter (smoke/baseline/extended: all)
   --pinned-memory <value>       Shared workload parameter (smoke/baseline/extended: true)
@@ -44,14 +35,18 @@ Workload options:
   --warmup-iters <n>            Untimed warm-up repetitions before measurement (smoke 1, baseline 5, extended 10)
   --num-iterations <n>          Number of timed repetitions (smoke 10, baseline 2100, extended 6080)
 
-Information:
+General options:
+  --config <file>               Config file (default: config/benchmark_config.yaml)
+  --quiet                       Suppress nonessential stdout
+  --log-level <level>           ERROR|WARN|INFO|DEBUG (default: INFO)
   --specification               Print this workload's specification and exit
   --help                        Show this help and exit
 
 Examples:
-  bash run_benchmark.sh --smoke --validate
-  bash run_benchmark.sh --baseline --validate
-  bash run_benchmark.sh --extended --validate
+  bash run_benchmark.sh --smoke
+  bash run_benchmark.sh --baseline
+  bash run_benchmark.sh --extended
+  bash run_benchmark.sh --baseline --num-iterations 8
 USAGE
 }
 
@@ -67,7 +62,6 @@ done
 
 PROFILE="smoke"
 CONFIG_FILE="config/benchmark_config.yaml"
-VALIDATE=1
 QUIET=0
 LOG_LEVEL_VALUE="INFO"
 DEVICE_ID=""
@@ -85,8 +79,7 @@ while [[ $# -gt 0 ]]; do
     --baseline) PROFILE="baseline"; shift ;;
     --extended) PROFILE="extended"; shift ;;
     --config) CONFIG_FILE="${2:-}"; shift 2 ;;
-    --validate) VALIDATE=1; shift ;;
-    --no-validate) VALIDATE=0; shift ;;
+    --validate) shift ;;  # ignored; result validation always runs
     --quiet) QUIET=1; shift ;;
     --log-level) LOG_LEVEL_VALUE="${2:-}"; shift 2 ;;
     --device-id) DEVICE_ID="${2:-}"; shift 2 ;;
@@ -140,7 +133,6 @@ OUTPUT_FORMAT="$(yaml_get output_format)"
 OUTPUT_FORMAT="${OUTPUT_FORMAT:-csv}"
 
 BENCHMARK_RUN_COMMAND="bash run_benchmark.sh --${PROFILE}"
-[[ "${VALIDATE}" -eq 1 ]] && BENCHMARK_RUN_COMMAND+=" --validate"
 [[ -n "${DEVICE_ID}" ]] && BENCHMARK_RUN_COMMAND+=" --device-id $(printf %q "${DEVICE_ID}")"
 [[ -n "${DIRECTION}" ]] && BENCHMARK_RUN_COMMAND+=" --direction $(printf %q "${DIRECTION}")"
 [[ -n "${PINNED_MEMORY}" ]] && BENCHMARK_RUN_COMMAND+=" --pinned-memory $(printf %q "${PINNED_MEMORY}")"
@@ -216,7 +208,7 @@ run_validate() {
 
 run_collection
 run_parse
-[[ "${VALIDATE}" -eq 1 ]] && run_validate
+run_validate
 record_benchmark_stop
 capture_journal_warnings "${RUN_DIR}" "${BENCHMARK_START_DATETIME}" "${STOP_TIME}"
 bash scripts/collect_hw_sw_info.sh "${RUN_DIR}"
