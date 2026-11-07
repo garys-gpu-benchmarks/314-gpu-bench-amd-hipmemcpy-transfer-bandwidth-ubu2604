@@ -16,12 +16,11 @@ capture_benchmark_run_command_submitted "$@"
 
 usage() {
   cat <<'USAGE'
+
 Usage: bash run_benchmark.sh [OPTIONS]
 
 Workload Name:          hipMemcpy Bandwidth Test (H2D, D2H, D2D).
 Main Goal:              Measure HIP H2D/D2H/D2D transfer bandwidth.
-Validation Objective:   Validates one CSV row per direction and transfer size from
-                        bin/hip_memcpy_bw.
 Command Tools Executed: Build via scripts/build.sh if needed; run bin/hip_memcpy_bw.
 
 Profiles (default: --smoke):

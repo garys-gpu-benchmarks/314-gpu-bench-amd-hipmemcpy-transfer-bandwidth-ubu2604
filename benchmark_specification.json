@@ -35,6 +35,11 @@
     "value": "Measure HIP H2D/D2H/D2D transfer bandwidth"
   },
   {
+    "field_name": "Command Tools Executed",
+    "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
+    "value": "Build via scripts/build.sh if needed; run bin/hip_memcpy_bw"
+  },
+  {
     "field_name": "Metrics",
     "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
     "value": "#1: Copy bandwidth at max size, H2D, GB/s (bandwidth_GBps); #2: Copy latency at min size, H2D, us (latency_us); #3: Bandwidth headline size, bytes (headline_transfer_bytes)"
@@ -140,16 +145,6 @@
     "value": "-"
   },
   {
-    "field_name": "Validation Objective",
-    "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
-    "value": "Validates one CSV row per direction and transfer size from bin/hip_memcpy_bw"
-  },
-  {
-    "field_name": "Command Tools Executed",
-    "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
-    "value": "Build via scripts/build.sh if needed; run bin/hip_memcpy_bw"
-  },
-  {
     "field_name": "run_benchmark Command Plus Options for Smoke Run (One minute or less)",
     "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
     "value": "bash run_benchmark.sh --smoke --validate --device-id 0 --direction all --pinned-memory true --min-bytes 1024 --max-bytes 268435456 --step-factor 2 --warmup-iters 1 --num-iterations 10"
@@ -163,6 +158,11 @@
     "field_name": "run_benchmark Command Plus Options for Extended Run (8 to 15 minutes)",
     "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
     "value": "bash run_benchmark.sh --extended --validate --device-id 0 --direction all --pinned-memory true --min-bytes 1024 --max-bytes 1073741824 --step-factor 2 --warmup-iters 10 --num-iterations 6080"
+  },
+  {
+    "field_name": "Validation Objective",
+    "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
+    "value": "Validates one CSV row per direction and transfer size from bin/hip_memcpy_bw"
   },
   {
     "field_name": "Command Execution Details and Purpose",
