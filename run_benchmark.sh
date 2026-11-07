@@ -33,9 +33,15 @@ Parameters (override the profile's value):
   --direction <value>           Shared workload parameter (smoke/baseline/extended: all)
   --pinned-memory <value>       Shared workload parameter (smoke/baseline/extended: true)
   --min-bytes <n>               Minimum message or transfer size (smoke/baseline/extended: 1024)
-  --max-bytes <n>               Maximum message or transfer size (smoke 268435456, baseline 1073741824, extended 1073741824)
-  --step-factor <n>             Multiplier between successive sweep sizes (smoke/baseline/extended: 2)
-  --warmup-iters <n>            Untimed warm-up repetitions before measurement (smoke 1, baseline 5, extended 10)
+  --max-bytes <n>               Maximum message or transfer size
+                                  smoke:             268435456
+                                  baseline/extended: 1073741824
+  --step-factor <n>             Multiplier between successive sweep sizes
+                                  all profiles: 2
+  --warmup-iters <n>            Untimed warm-up repetitions before measurement
+                                  smoke:    1
+                                  baseline: 5
+                                  extended: 10
   --num-iterations <n>          Number of timed repetitions (smoke 10, baseline 2100, extended 6080)
 
 General options:
