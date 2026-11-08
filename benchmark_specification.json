@@ -205,14 +205,14 @@
     "value": "MI300X"
   },
   {
-    "field_name": "Raw Output Format",
-    "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
-    "value": "hip_memcpy_bw stdout plus a CSV row per direction and transfer size"
-  },
-  {
     "field_name": "Primary Record Granularity",
     "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
     "value": "one row per direction and transfer size"
+  },
+  {
+    "field_name": "Raw Output Format",
+    "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
+    "value": "hip_memcpy_bw stdout plus a CSV row per direction and transfer size"
   },
   {
     "field_name": "Raw Output Example",
@@ -225,14 +225,14 @@
     "value": "direction, pinned_memory, transfer_size_bytes, latency_us, bandwidth_GBps"
   },
   {
-    "field_name": "Success Criteria",
-    "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
-    "value": "parsed rows status=ok and bandwidth/latency gates pass"
-  },
-  {
     "field_name": "Parser and Normalization Notes",
     "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
     "value": "One row per direction and transfer size. latency_us is the time per copy, so only the smallest size is a latency; at 1 GB it is milliseconds of data movement. summary.json also keeps blind means bandwidth_gbps and latency_us over all rows; they are not metrics. If hip_memcpy_bw prints no rows, the collector fails (no fallback rows)"
+  },
+  {
+    "field_name": "Success Criteria",
+    "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
+    "value": "parsed rows status=ok and bandwidth/latency gates pass"
   },
   {
     "field_name": "Hardware Config",

@@ -19,9 +19,9 @@ usage() {
 
 Usage: bash run_benchmark.sh [OPTIONS]
 
-Workload Name:          hipMemcpy Bandwidth Test (H2D, D2H, D2D).
-Main Goal:              Measure HIP H2D/D2H/D2D transfer bandwidth.
-Command Tools Executed: Build via scripts/build.sh if needed; run bin/hip_memcpy_bw.
+Workload Name:          hipMemcpy Bandwidth Test (H2D, D2H, D2D)
+Main Goal:              Measure HIP H2D/D2H/D2D transfer bandwidth
+Command Tools Executed: Build via scripts/build.sh if needed; run bin/hip_memcpy_bw
 
 Profiles (default: --smoke):
   --smoke                       Run smoke profile
