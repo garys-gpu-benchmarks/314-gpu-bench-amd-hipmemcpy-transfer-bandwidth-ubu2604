@@ -32,9 +32,12 @@ sample_index,status,direction,pinned_memory,transfer_size_bytes,latency_us,bandw
 
 ## Metrics
 
-- **#1: Copy bandwidth at max size, H2D, GB/s** — stored as `bandwidth_GBps`.
-- **#2: Copy latency at min size, H2D, us** — stored as `latency_us`.
-- **#3: Bandwidth headline size, bytes** — stored as `headline_transfer_bytes`.
+- **#1: H2D bandwidth at max transfer size, GB/s** — stored as `bandwidth_h2d_gbps`.
+- **#2: D2H bandwidth at max transfer size, GB/s** — stored as `bandwidth_d2h_gbps`.
+- **#3: D2D bandwidth at max transfer size, GB/s** — stored as `bandwidth_d2d_gbps`.
+- **#4: H2D latency at min transfer size, us** — stored as `latency_h2d_us`.
+- **#5: D2H latency at min transfer size, us** — stored as `latency_d2h_us`.
+- **#6: D2D latency at min transfer size, us** — stored as `latency_d2d_us`.
 
 ## Framework
 
