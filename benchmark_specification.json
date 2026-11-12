@@ -42,7 +42,7 @@
   {
     "field_name": "Metrics",
     "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
-    "value": "#1: H2D bandwidth at max transfer size, GB/s (bandwidth_h2d_gbps); #2: D2H bandwidth at max transfer size, GB/s (bandwidth_d2h_gbps); #3: D2D bandwidth at max transfer size, GB/s (bandwidth_d2d_gbps); #4: H2D latency at min transfer size, us (latency_h2d_us); #5: D2H latency at min transfer size, us (latency_d2h_us); #6: D2D latency at min transfer size, us (latency_d2d_us)"
+    "value": "#1: H2D bandwidth at max transfer size, GB/s (bandwidth_h2d_gb_s); #2: D2H bandwidth at max transfer size, GB/s (bandwidth_d2h_gb_s); #3: D2D bandwidth at max transfer size, GB/s (bandwidth_d2d_gb_s); #4: H2D latency at min transfer size, us (latency_h2d_us); #5: D2H latency at min transfer size, us (latency_d2h_us); #6: D2D latency at min transfer size, us (latency_d2d_us)"
   },
   {
     "field_name": "Parameter_01",
@@ -222,7 +222,7 @@
   {
     "field_name": "Output Fields / Metrics to Parse",
     "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
-    "value": "Raw rows: direction, pinned_memory, transfer_size_bytes, latency_us, bandwidth_GBps. Published: bandwidth_h2d_gbps, bandwidth_d2h_gbps, bandwidth_d2d_gbps, latency_h2d_us, latency_d2h_us, latency_d2d_us"
+    "value": "Raw rows: direction, pinned_memory, transfer_size_bytes, latency_us, bandwidth_GBps. Published: bandwidth_h2d_gb_s, bandwidth_d2h_gb_s, bandwidth_d2d_gb_s, latency_h2d_us, latency_d2h_us, latency_d2d_us"
   },
   {
     "field_name": "Parser and Normalization Notes",

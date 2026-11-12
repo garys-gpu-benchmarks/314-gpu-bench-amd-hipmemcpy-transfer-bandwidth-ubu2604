@@ -44,9 +44,9 @@ Profile values live in `config/benchmark_config.yaml`.
 
 | # | Metric | Key |
 |---|---|---|
-| 1 | H2D bandwidth at max transfer size, GB/s | `bandwidth_h2d_gbps` |
-| 2 | D2H bandwidth at max transfer size, GB/s | `bandwidth_d2h_gbps` |
-| 3 | D2D bandwidth at max transfer size, GB/s | `bandwidth_d2d_gbps` |
+| 1 | H2D bandwidth at max transfer size, GB/s | `bandwidth_h2d_gb_s` |
+| 2 | D2H bandwidth at max transfer size, GB/s | `bandwidth_d2h_gb_s` |
+| 3 | D2D bandwidth at max transfer size, GB/s | `bandwidth_d2d_gb_s` |
 | 4 | H2D latency at min transfer size, us | `latency_h2d_us` |
 | 5 | D2H latency at min transfer size, us | `latency_d2h_us` |
 | 6 | D2D latency at min transfer size, us | `latency_d2d_us` |
