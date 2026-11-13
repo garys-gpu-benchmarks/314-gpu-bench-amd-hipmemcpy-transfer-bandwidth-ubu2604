@@ -40,6 +40,11 @@
     "value": "Build via scripts/build.sh if needed; run bin/hip_memcpy_bw"
   },
   {
+    "field_name": "Execution Description With Parameters",
+    "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
+    "value": "Builds and runs bin/hip_memcpy_bw over yaml transfer sizes and directions. direction, pinned_memory, min_bytes, max_bytes, step_factor, warmup_iters, and num_iterations are forwarded when non-empty. output_format: csv"
+  },
+  {
     "field_name": "Metrics",
     "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
     "value": "#1: H2D bandwidth at max transfer size, GB/s (bandwidth_h2d_gb_s); #2: D2H bandwidth at max transfer size, GB/s (bandwidth_d2h_gb_s); #3: D2D bandwidth at max transfer size, GB/s (bandwidth_d2d_gb_s); #4: H2D latency at min transfer size, us (latency_h2d_us); #5: D2H latency at min transfer size, us (latency_d2h_us); #6: D2D latency at min transfer size, us (latency_d2d_us)"
@@ -173,11 +178,6 @@
     "field_name": "Command Methodology",
     "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
     "value": "Compile and run bin/hip_memcpy_bw over yaml directions and the min_bytes to max_bytes sweep, using step_factor and the iteration counts, then parse bandwidth and latency for each direction and size"
-  },
-  {
-    "field_name": "Execution Description With Parameters",
-    "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
-    "value": "Builds and runs bin/hip_memcpy_bw over yaml transfer sizes and directions. direction, pinned_memory, min_bytes, max_bytes, step_factor, warmup_iters, and num_iterations are forwarded when non-empty. output_format: csv"
   },
   {
     "field_name": "Execution Domain",
